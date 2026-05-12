@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Night Club</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!--Hero-->
+    <section class="hero" id="hero">
+      <!--Baggrundsbillede-->
+      <div class="hero-bg"></div>
+
+      <!--Mørkt overlag så tekst er mere synligt over billederne-->
+      <div class="hero-overlay"></div>
+
+      <!--Logo-->
+      <div class="hero-content">
+        <img
+          src="assets/icon/Logo_main.svg"
+          alt="Night Club logo"
+          class="hero-logo"
+        />
+      </div>
+
+      <!--Navigation under hero-->
+      <nav class="navbar" id="navbar">
+        <div class="nav-container">
+          <div class="nav-logo">
+            <img
+              src="assets/icon/Logo.svg"
+              alt="Night Club"
+              class="nav-logo-img"
+            />
+          </div>
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="blog.html" class="nav-link">Blog</a></li>
+            <li><a href="#" class="nav-link">Book Table</a></li>
+            <li><a href="#" class="nav-link">Contact Us</a></li>
+            <li><a href="#" class="nav-link">Log In</a></li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+
+    <!--Welcome-->
+    <section class="welcome">
+      <div class="section-container">
+        <h2 class="section-title">Welcome to NightClub</h2>
+
+        <div class="welcome-grid">
+          <div class="welcome-card">
+            <img src="assets/content-img/offer1.jpg" alt="Night Club" />
+            <div class="welcome-card-overlay">
+              <h3>Night Club</h3>
+            </div>
+          </div>
+
+          <div class="welcome-card">
+            <img src="assets/content-img/offer2.jpg" alt="Restaurant" />
+            <div class="welcome-card-overlay">
+              <h3>Restaurant</h3>
+            </div>
+          </div>
+
+          <div class="welcome-card">
+            <img src="assets/content-img/offer3.jpg" alt="Bar" />
+            <div class="welcome-card-overlay">
+              <h3>Bar</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Recent Blog-->
+    <section class="recent-blog">
+      <div class="section-container">
+        <h2 class="section-title">Recent Blog</h2>
+        <div class="blog-grid" id="recent-blog-grid">
+          <p class="loading-text">Loading posts...</p>
+        </div>
+        <div class="blog-cta">
+          <a href="blog.html" class="btn-primary">View All Posts</a>
+        </div>
+      </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <img
+            src="assets/icon/Logo.svg"
+            alt="Night Club"
+            class="footer-logo"
+          />
+          <p class="footer-desc">Night Club - where the night comes alive.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Opening Hours</h4>
+          <p>Thursday: 10pm - 3am</p>
+          <p>Friday: 10pm - 5pm</p>
+          <p>Saturday: 10pm - 5pm</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Night Club. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>
