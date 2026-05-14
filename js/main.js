@@ -81,7 +81,7 @@ fetch("http://localhost:4000/blogposts")
 
     // Vis kun de 2 seneste posts på forsiden
     // .slice(0, 3) tager de 3 første items fra array
-    const recentPosts = posts.slice(0, 2);
+    const recentPosts = posts.slice(0, 3);
 
     // Loop igennem hvert post og skaber et card
     recentPosts.forEach(function (post) {
