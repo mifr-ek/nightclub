@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Night Club - Blog</title>
+    <title>Night Club - Blog Post</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!--Navbar-->
+    <!--NAVBAR -->
     <nav class="navbar blog-navbar" id="navbar">
       <div class="nav-container">
         <div class="nav-logo">
@@ -31,27 +31,91 @@
       </div>
     </nav>
 
-    <!--Blog hero-->
+    <!--HERO -->
     <section class="blog-hero">
       <div class="blog-hero-overlay"></div>
       <div class="blog-hero-content">
-        <h1>Blog</h1>
+        <h1>Blog Post</h1>
       </div>
     </section>
 
-    <!--Blog posts-->
-    <section class="blog-page">
+    <!--BLOST-POST INDHOLD -->
+    <section class="blogpost-page">
       <div class="section-container">
-        <!--Her vil de posts som er kodet i JS blive opbygget-->
-        <div id="blog-posts-container">
+        <!--Post indhold fra JS-->
+        <div id="blogpost-content">
           <p class="loading-text">Loading posts...</p>
         </div>
 
-        <div class="pagination" id="pagination"></div>
+        <!--Kommentarer-sektion-->
+        <div class="comments-section">
+          <!--Tallet af kommentarer fra JS-->
+          <h2 class="comments-title" id="comments-title">Comments</h2>
+
+          <!--Individuelle kommentarer fra JS-->
+          <div id="comments-container"></div>
+        </div>
+
+        <!--KOMMENTAR-FORM -->
+        <div class="comment-form-section">
+          <h2 class="comments-title">Leave a comment</h2>
+
+          <form class="comment-form" id="comment-form">
+            <div class="form-row">
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="commenter-name"
+                  class="form-input"
+                  placeholder="Your Name"
+                />
+                <!--Errorbesked, hvis noget går galt -->
+                <p class="form-error" id="name-error">Please enter your name</p>
+              </div>
+
+              <!--E-mail felt-->
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="commenter-email"
+                  class="form-input"
+                  placeholder="Your Email"
+                />
+                <!--Errorbesked hvis emailen ikke findes-->
+                <p class="form-error" id="email-error">
+                  Please enter a valid email
+                </p>
+              </div>
+            </div>
+
+            <!--Kommentar tekstfelt-->
+            <div class="form-group">
+              <textarea
+                id="commenter-text"
+                class="form-input form-textarea"
+                placeholder="Your Comment"
+              ></textarea>
+              <!--Errorbesked hvis kommentaren er tom-->
+              <p class="form-error" id="comment-error">
+                Please write a comment
+              </p>
+            </div>
+
+            <!--Submit button-->
+            <div class="form-submit">
+              <button type="submit" class="btn-primary">Submit</button>
+            </div>
+
+            <!--"Success"besked efter fuldført submit-->
+            <p class="form-success" id="form-success">
+              Your comment has been submitted!
+            </p>
+          </form>
+        </div>
       </div>
     </section>
 
-    <!--Footer-->
+    <!--FOOTER -->
     <footer class="footer">
       <div class="footer-container">
         <!--Venstre kolonne-->

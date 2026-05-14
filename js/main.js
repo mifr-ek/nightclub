@@ -32,6 +32,38 @@ window.addEventListener("scroll", function () {
   }
 });
 
+// FOOTER RECENT POSTS //
+const footerPostsContainer = document.getElementById("footer-recent-posts");
+
+fetch("http://localhost:4000/blogposts")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (posts) {
+    footerPostsContainer.innerHTML = "";
+    const recentTwo = posts.slice(0.2);
+    recentTwo.forEach(function (post) {
+      const postEl = document.createElement("div");
+      postEl.classList.add("footer-post");
+      postEl.innerHTML = `
+        <img
+          src="${post.asset.url}"
+          alt="${post.title}"
+          class="footer-post-img"
+        >
+        <div>
+          <p class="footer-post-title">${post.content.substring(0, 60)}...</p>
+          <span class="footer-post-date">April 17, 2018</span>
+        </div>
+      `;
+      footerPostsContainer.appendChild(postEl);
+    });
+  })
+  .catch(function (error) {
+    footerPostsContainer.innerHTML = "";
+    console.error("Footer posts error:", error);
+  });
+
 // Fetch seneste blog-post fra API
 const blogGrid = document.getElementById("recent-blog-grid");
 
@@ -47,9 +79,9 @@ fetch("http://localhost:4000/blogposts")
     // Fjerner "Loading posts..." teksten
     blogGrid.innerHTML = "";
 
-    // Vis kun de 3 seneste posts på forsiden
+    // Vis kun de 2 seneste posts på forsiden
     // .slice(0, 3) tager de 3 første items fra array
-    const recentPosts = posts.slice(0, 3);
+    const recentPosts = posts.slice(0, 2);
 
     // Loop igennem hvert post og skaber et card
     recentPosts.forEach(function (post) {
