@@ -10,6 +10,45 @@ const blogpostContent = document.getElementById("blogpost-content");
 const commentsTitle = document.getElementById("comments-title");
 const commentsContainer = document.getElementById("comments-container");
 
+//Funktion til at hente og vise kommentarer
+//Den er en funktion så den kan kaldes både ved sideload og efter ny kommentar
+function loadComments() {
+  //Bruger det korrekte API endpoint med blogpostId som query parameter
+  //t=${Date.now()} forhindrer browseren i at cache svaret
+  fetch(`http://localhost:4000/comments?blogpostId=${postId}&t=${Date.now()}`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (comments) {
+      //Opdaterer kommentar-overskriften med antal kommentarer
+      commentsTitle.textContent = `${comments.length} Comments`;
+
+      //Rydder containeren
+      commentsContainer.innerHTML = "";
+
+      if (comments.length === 0) {
+        commentsContainer.innerHTML =
+          '<p class="loading-text">No comments yet. Be the first!</p>';
+      } else {
+        //Viser hver kommentar
+        //API'et bruger "name" og "content" ikke "author" og "comment"
+        comments.forEach(function (comment) {
+          const commentEl = document.createElement("div");
+          commentEl.classList.add("comment");
+          commentEl.innerHTML = `
+            <p class="comment-author">${comment.name}</p>
+            <p class="comment-date">Posted: ${comment.date || "Unknown date"}</p>
+            <p class="comment-text">${comment.content}</p>
+          `;
+          commentsContainer.appendChild(commentEl);
+        });
+      }
+    })
+    .catch(function (error) {
+      console.error("Comments error:", error);
+    });
+}
+
 //Hvis der ikke er et id i URL'en vises fejlbesked
 if (!postId) {
   blogpostContent.innerHTML =
@@ -33,31 +72,8 @@ if (!postId) {
         <p class="blogpost-content">${data.content}</p>
       `;
 
-      //Tjekker om der er kommentarer
-      const comments = data.comments || [];
-
-      //Opdaterer kommentar-overskriften med antal kommentarer
-      commentsTitle.textContent = `${comments.length} Comments`;
-
-      //Rydder containeren
-      commentsContainer.innerHTML = "";
-
-      if (comments.length === 0) {
-        commentsContainer.innerHTML =
-          '<p class="loading-text">No comments yet. Be the first!</p>';
-      } else {
-        //Viser hver kommentar
-        comments.forEach(function (comment) {
-          const commentEl = document.createElement("div");
-          commentEl.classList.add("comment");
-          commentEl.innerHTML = `
-            <p class="comment-author">${comment.author}</p>
-            <p class="comment-date">Posted: ${comment.date || "Unknown date"}</p>
-            <p class="comment-text">${comment.comment}</p>
-          `;
-          commentsContainer.appendChild(commentEl);
-        });
-      }
+      //Kalder loadComments funktionen for at vise kommentarer
+      loadComments();
     })
     .catch(function (error) {
       blogpostContent.innerHTML =
@@ -66,7 +82,7 @@ if (!postId) {
     });
 }
 
-// KOMMENTAR FORM - VALIDERING OG POST TIL API
+// KOMMENTAR FORM - VALIDERING OG POST TIL API //
 const commentForm = document.getElementById("comment-form");
 
 commentForm.addEventListener("submit", function (event) {
@@ -112,16 +128,18 @@ commentForm.addEventListener("submit", function (event) {
   }
 
   //Hvis alle felter er rigtige, så send til API
+  //API'et bruger /comments endpoint med blogpostId, name og content
   if (isValid) {
-    fetch(`http://localhost:4000/blogposts/${postId}/comments`, {
+    fetch(`http://localhost:4000/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        author: name,
-        email: email,
-        comment: comment,
+        blogpostId: parseInt(postId),
+        name: name,
+        content: comment,
+        date: new Date().toISOString(),
       }),
     })
       .then(function (response) {
@@ -132,6 +150,8 @@ commentForm.addEventListener("submit", function (event) {
         formSuccess.classList.add("visible");
         //Nulstiller formularen
         commentForm.reset();
+        //Genindlæser kommentarerne så den nye kommentar vises med det samme
+        loadComments();
       })
       .catch(function (error) {
         console.error("Comment post error:", error);
@@ -150,8 +170,8 @@ fetch("http://localhost:4000/blogposts")
   })
   .then(function (posts) {
     footerPostsContainerBlogpost.innerHTML = "";
-    const recentTwo = posts.slice(0, 3);
-    recentTwo.forEach(function (post) {
+    const recentThree = posts.slice(0, 3);
+    recentThree.forEach(function (post) {
       const postEl = document.createElement("div");
       postEl.classList.add("footer-post");
       postEl.innerHTML = `
