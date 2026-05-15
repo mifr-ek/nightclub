@@ -1,5 +1,22 @@
-// HENT ALLE POSTS FRA API //
+// HAMBURGER MENU
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
 
+hamburger.addEventListener("click", function () {
+  //Toggler open-class på begge hamburger- og nav links
+  hamburger.classList.toggle("open");
+  navLinks.classList.toggle("open");
+});
+
+// Luk hamburger-menu når der klikkes på et link
+navLinks.querySelectorAll(".nav-link").forEach(function (link) {
+  link.addEventListener("click", function () {
+    hamburger.classList.remove("open");
+    navLinks.classList.remove("open");
+  });
+});
+
+// HENT ALLE POSTS FRA API //
 //Hvor mange posts der vises per side
 const POSTS_PER_PAGE = 3;
 

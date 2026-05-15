@@ -45,7 +45,7 @@ img {
   background-color: var(--pink);
   color: var(--white);
   font-family: var(--font-heading);
-  font-style: 14px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -368,7 +368,7 @@ img {
 
 .blog-post-title {
   font-family: var(--font-heading);
-  font-style: 24px;
+  font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -419,7 +419,7 @@ img {
   background-color: transparent;
   color: var(--white);
   font-family: var(--font-heading);
-  font-style: 14px;
+  font-size: 14px;
   font-weight: 700;
   padding: 10px 18px;
   border: 2px solid var(--mid-grey);
@@ -452,7 +452,7 @@ img {
 
 .blogpost-title {
   font-family: var(--font-heading);
-  font-style: 28px;
+  font-size: 28px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -461,7 +461,7 @@ img {
 }
 
 .blogpost-meta {
-  font-style: 13px;
+  font-size: 13px;
   color: var(--pink);
   margin-bottom: 24px;
   text-transform: uppercase;
@@ -479,12 +479,12 @@ img {
 .comments-section {
   margin-bottom: 60px;
   padding-top: 40px;
-  border-top: 1px solid --mid-grey;
+  border-top: 1px solid var(--mid-grey);
 }
 
 .commments-title {
   font-family: var(--font-heading);
-  font-style: 26px;
+  font-size: 26px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -495,12 +495,12 @@ img {
 .comment {
   margin-bottom: 32px;
   padding-bottom: 32px;
-  border-bottom: 1px solid --mid-grey;
+  border-bottom: 1px solid var(--mid-grey);
 }
 
 .comment-author {
   font-family: var(--font-heading);
-  font-style: 16px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--white);
   margin-bottom: 4px;
@@ -522,7 +522,7 @@ img {
 
 .comment-form-section {
   padding-top: 40px;
-  border-top: 1px solid --mid-grey;
+  border-top: 1px solid var(--mid-grey);
   margin-bottom: 60px;
 }
 
@@ -589,7 +589,7 @@ img {
   text-align: right;
 }
 
-/* Footer */
+/* FOOTER */
 .footer {
   background-color: var(--dark);
   border-top: 1px solid var(--mid-grey);
@@ -701,4 +701,137 @@ img {
 .social-icon:hover {
   border-color: var(--pink);
   color: var(--pink);
+}
+
+.hamburger {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  /*Navbar*/
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    position: relative;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  /* Hero */
+  .hero-logo {
+    width: 200px;
+  }
+
+  /* Welcome sektion */
+  .welcome-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Recent blog på forsiden */
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Blog page post */
+  .blog-post-row {
+    flex-direction: column !important;
+  }
+
+  .blog-post-image {
+    width: 100%;
+    height: 220px;
+  }
+
+  /* Kommentar-form */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sektion padding */
+  .section-container {
+    padding: 48px 16px;
+  }
+
+  /* Sektion titel */
+  .section-title {
+    font-size: 28px;
+  }
+
+  /* Blog post titel */
+  .blog-post-title {
+    font-size: 20px;
+  }
+
+  /* Blogpost side titel */
+  .blogpost-title {
+    font-size: 22px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 16px 0;
+    z-index: 100;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--mid-grey);
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 }
